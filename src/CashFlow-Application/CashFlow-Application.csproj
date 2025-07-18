@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>CashFlow_Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CashFlow-Communication\CashFlow-Communication.csproj" />
+    <ProjectReference Include="..\CashFlow-Domain\CashFlow-Domain.csproj" />
+    <ProjectReference Include="..\CashFlow-Exception\CashFlow-Exception.csproj" />
+  </ItemGroup>
+
+</Project>
