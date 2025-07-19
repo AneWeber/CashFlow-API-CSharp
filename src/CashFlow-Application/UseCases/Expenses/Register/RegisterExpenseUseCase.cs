@@ -5,48 +5,24 @@ using CashFlow_Communication.Responses;
 namespace CashFlow_Application.UseCases.Expenses.Register;
 public class RegisterExpenseUseCase
 {
-    public ResponseRegisteredExpenseJson Execute(RequestExpenseJson request) 
+    public ResponseRegisteredExpenseJson Execute(RequestRegisterExpenseJson request) 
     {
         Validate(request);
 
         return new ResponseRegisteredExpenseJson();
     }
 
-    private void Validate(RequestExpenseJson request)
+    private void Validate(RequestRegisterExpenseJson request)
     {
-        var titleIsEmpty = string.IsNullOrWhiteSpace(request.Title);
-        if (titleIsEmpty)
-        {
-            throw new ArgumentException("Title is required.");
-        }
+        var validator = new RegisterExpenseValidator();
 
-        var descriptionIsEmpty = string.IsNullOrWhiteSpace(request.Description);
-        if (descriptionIsEmpty)
-        {
-            throw new ArgumentException("Description is required.");
-        }
+        var result = validator.Validate(request);
 
-        if (request.Amount <= 0)
+        if (result.IsValid == false)
         {
-            throw new ArgumentException("Amount must be greater than zero.");
-        }
+            var errorMessages = result.Errors.Select(error => error.ErrorMessage).ToList();
 
-        var dateIsPast = DateTime.Compare(request.Date, DateTime.UtcNow);
-        if (dateIsPast > 0)
-        {
-            throw new ArgumentException("Date cannot be in the future.");
-        }
-
-        var expensesCategoryIsValid = Enum.IsDefined(typeof(ExpensesCategories), request.Category);
-        if(!expensesCategoryIsValid)
-        {
-            throw new ArgumentException("Invalid category.");
-        }
-
-        var paymentMethodIsValid = Enum.IsDefined(typeof(PaymentMethod), request.PaymentMethod);
-        if (!paymentMethodIsValid)
-        {
-            throw new ArgumentException("Invalid payment method.");
+            throw new ArgumentException();
         }
     }
 
