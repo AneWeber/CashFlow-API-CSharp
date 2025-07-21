@@ -1,4 +1,5 @@
 ﻿using CashFlow_Communication.Responses;
+using CashFlow_Exception;
 using CashFlow_Exception.ExceptionsBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -15,7 +16,7 @@ public class ExceptionFilter : IExceptionFilter
         }
         else
         {
-            HandleUnknownException(context);
+            ThrowUnkownError(context);
         }
     }
 
@@ -39,9 +40,9 @@ public class ExceptionFilter : IExceptionFilter
         }
     }
 
-    private void HandleUnknownException(ExceptionContext context)
+    private void ThrowUnkownError(ExceptionContext context)
     {
-        var errorResponse = new ResponseErrorJson("An unknown error occurred.");
+        var errorResponse = new ResponseErrorJson(ResourceErrorMessages.UNKNOWN_ERROR);
 
         context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
         context.Result = new ObjectResult(errorResponse);
