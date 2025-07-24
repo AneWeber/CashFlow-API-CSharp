@@ -1,13 +1,21 @@
-﻿using CashFlow_Communication.Enums;
-using CashFlow_Communication.Requests;
+﻿using CashFlow_Communication.Requests;
 using CashFlow_Communication.Responses;
 using CashFlow_Domain.Entities;
+using CashFlow_Domain.Repositories;
+using CashFlow_Domain.Repositories.Expenses;
 using CashFlow_Exception.ExceptionsBase;
-using CashFlow_Infrastructure.DataAccess;
 
 namespace CashFlow_Application.UseCases.Expenses.Register;
-public class RegisterExpenseUseCase
+public class RegisterExpenseUseCase : IRegisterExpenseUseCase
 {
+    private readonly IExpensesRepository _repository;
+    private readonly IUnitOfWork _unitOfWork;
+    public RegisterExpenseUseCase(IExpensesRepository repository, IUnitOfWork unitOfWork)
+    {
+        _repository = repository;
+        _unitOfWork = unitOfWork;
+    }
+
     public ResponseRegisteredExpenseJson Execute(RequestRegisterExpenseJson request) 
     {
         Validate(request);
@@ -22,6 +30,10 @@ public class RegisterExpenseUseCase
             PaymentMethod = (CashFlow_Domain.Enums.PaymentMethod)request.PaymentMethod,
             Notes = request.Notes
         };
+
+        _repository.Add(entity);
+
+        _unitOfWork.Commit();
 
         return new ResponseRegisteredExpenseJson();
     }
