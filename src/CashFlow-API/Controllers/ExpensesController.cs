@@ -1,4 +1,5 @@
 ﻿using CashFlow_Application.UseCases.Expenses.Register;
+using CashFlow_Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow_API.Controllers;
@@ -8,11 +9,13 @@ namespace CashFlow_API.Controllers;
 public class ExpensesController : ControllerBase
 {
     [HttpPost]
-    public IActionResult Register(
+    [ProducesResponseType(typeof(ResponseRegisteredExpenseJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Register(
         [FromServices] IRegisterExpenseUseCase useCase,
         [FromBody] CashFlow_Communication.Requests.RequestRegisterExpenseJson request) 
     {
-        var response = useCase.Execute(request);
+        var response = await useCase.Execute(request);
 
         return Created(string.Empty, response);
     }
