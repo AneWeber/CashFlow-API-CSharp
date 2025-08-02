@@ -11,4 +11,8 @@
     <ProjectReference Include="..\CashFlow-Communication\CashFlow-Communication.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CashFlow_Domain\" />
+  </ItemGroup>
+
 </Project>
