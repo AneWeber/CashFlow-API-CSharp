@@ -12,7 +12,36 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CashFlow_Domain\" />
+    <Compile Update="Reports\ResourceReportCategories.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceReportCategories.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\ResourceReportGenerationMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceReportGenerationMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\ResourceReportPaymentMethods.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceReportPaymentMethods.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Reports\ResourceReportCategories.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceReportCategories.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Reports\ResourceReportGenerationMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceReportGenerationMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Reports\ResourceReportPaymentMethods.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceReportPaymentMethods.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
