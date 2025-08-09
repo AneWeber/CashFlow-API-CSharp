@@ -129,6 +129,9 @@
   <data name="DESCRIPTION" xml:space="preserve">
     <value>Descrição</value>
   </data>
+  <data name="EXPENSES_FOR" xml:space="preserve">
+    <value>Despesas para</value>
+  </data>
   <data name="NOTES" xml:space="preserve">
     <value>Notas</value>
   </data>
@@ -137,5 +140,8 @@
   </data>
   <data name="TITLE" xml:space="preserve">
     <value>Título</value>
+  </data>
+  <data name="TOTAL_SPENT_IN" xml:space="preserve">
+    <value>Total gasto em {0}</value>
   </data>
 </root>

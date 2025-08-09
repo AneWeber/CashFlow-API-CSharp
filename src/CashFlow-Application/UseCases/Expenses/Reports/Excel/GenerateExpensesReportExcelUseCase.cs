@@ -1,8 +1,7 @@
-﻿using CashFlow_Domain.Enums;
+﻿using CashFlow_Domain.Extensions;
 using CashFlow_Domain.Reports;
 using CashFlow_Domain.Repositories.Expenses;
 using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Bibliography;
 
 namespace CashFlow_Application.UseCases.Expenses.Reports.Excel;
 public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUseCase
@@ -38,12 +37,12 @@ public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUs
         {
             worksheet.Cell($"A{raw}").Value = expense.Title;
             worksheet.Cell($"B{raw}").Value = expense.Date;
-            worksheet.Cell($"C{raw}").Value = ConvertPaymentMethod(expense.PaymentMethod);
+            worksheet.Cell($"C{raw}").Value = expense.PaymentMethod.PaymentMethodToString();
 
             worksheet.Cell($"D{raw}").Value = expense.Amount;
             worksheet.Cell($"D{raw}").Style.NumberFormat.Format = $"-{CURRENCY_SYMBOL} #,##0.00";
 
-            worksheet.Cell($"E{raw}").Value = ConvertCategory(expense.Category);
+            worksheet.Cell($"E{raw}").Value = expense.Category.ExpensesCategoriesToString();
             worksheet.Cell($"F{raw}").Value = expense.Description;
             worksheet.Cell($"G{raw}").Value = expense.Notes;
 
@@ -57,37 +56,6 @@ public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUs
 
         return file.ToArray();
     }
-
-    private string ConvertPaymentMethod(PaymentMethod payment)
-    {
-        return payment switch
-        {
-            PaymentMethod.Cash => ResourceReportPaymentMethods.CASH,
-            PaymentMethod.CreditCard => ResourceReportPaymentMethods.CREDIT_CARD,
-            PaymentMethod.DebitCard => ResourceReportPaymentMethods.DEBIT_CARD,
-            PaymentMethod.EletronicTransfer => ResourceReportPaymentMethods.ELETRONIC_TRANSFER,
-            _ => string.Empty
-        };
-    }
-
-    private string ConvertCategory(ExpensesCategories category)
-    {
-        return category switch
-        {
-            ExpensesCategories.Clothing => ResourceReportCategories.CLOTHING,
-            ExpensesCategories.Education => ResourceReportCategories.EDUCATION,
-            ExpensesCategories.Entertainment => ResourceReportCategories.ENTERTAINMENT,
-            ExpensesCategories.Food => ResourceReportCategories.FOOD,
-            ExpensesCategories.Health => ResourceReportCategories.HEALTH,
-            ExpensesCategories.Housing => ResourceReportCategories.HOUSING,
-            ExpensesCategories.Miscellaneous => ResourceReportCategories.MISCELLANEOUS,
-            ExpensesCategories.PersonalCare => ResourceReportCategories.PERSONAL_CARE,
-            ExpensesCategories.Transportation => ResourceReportCategories.TRANSPORTATION,
-            ExpensesCategories.Utilities => ResourceReportCategories.UTILITIES,
-            _ => string.Empty
-        };
-    }
-
 
     private void InsertHeader(IXLWorksheet worksheet)
     {
