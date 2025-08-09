@@ -1,6 +1,6 @@
 # CashFlow API in C# .NET 💸
 
-Welcome to the **CashFlow API**, a robust backend solution designed to help you meticulously track and manage your personal expenses. This project is built with C# and .NET, embracing the principles of **Domain-Driven Design (DDD)** to ensure a clean, scalable, and maintainable architecture.
+Welcome to the **CashFlow API**, a robust backend solution designed to help you meticulously track and manage your personal expenses. This project is built with C# and .NET, embracing the principles of **Domain-Driven Design (DDD)** and **REST** principles to ensure a clean, scalable, and maintainable architecture.
 
 ---
 
@@ -19,6 +19,7 @@ This API currently provides core functionalities for managing your financial out
 * **Full CRUD Operations:** Seamlessly **C**reate, **R**ead, **U**pdate, and **D**elete expense records.
 * **Robust Error Handling:** Integrated mechanisms to gracefully manage and communicate API errors.
 * **Unit Testing:** A solid foundation of unit tests ensures reliability and helps prevent regressions.
+* **Data Export:** Functionality to export expense reports to PDF and Excel formats.
 
 ---
 
@@ -29,7 +30,6 @@ This project is actively under development, with exciting features planned for f
 * **Database Integration:** Persistence for your expense data (e.g., SQL Server, PostgreSQL).
 * **Dependency Injection:** Implementing a more flexible and testable architecture.
 * **Authentication & Authorization:** Secure user access and data protection.
-* **Data Export:** Functionality to export expense reports to PDF and Excel formats.
 * **Database Migrations:** Streamlined database schema management.
 
 ---
