@@ -1,4 +1,5 @@
-﻿using CashFlow_Domain.Enums;
+﻿
+using CashFlow_Domain.Enums;
 using CashFlow_Domain.Reports;
 
 namespace CashFlow_Domain.Extensions;
