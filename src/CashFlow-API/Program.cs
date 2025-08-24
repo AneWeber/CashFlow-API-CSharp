@@ -1,6 +1,8 @@
 using CashFlow_API.Filters;
 using CashFlow_API.Middleware;
+using CashFlow_API.Token;
 using CashFlow_Application;
+using CashFlow_Domain.Security.Tokens;
 using CashFlow_Infrastructure;
 using CashFlow_Infrastructure.Extensions;
 using CashFlow_Infrastructure.Migrations;
@@ -48,6 +50,10 @@ builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)))
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+
+builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication(config =>
 {
