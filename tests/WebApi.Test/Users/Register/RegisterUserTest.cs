@@ -35,6 +35,7 @@ public class RegisterUserTest : CashFlowClassFixture
         response.RootElement.GetProperty("token").GetString().Should().NotBeNullOrEmpty();
     }
 
+    [Theory]
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Empty_Name(string culture)
     {
