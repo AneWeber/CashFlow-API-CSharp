@@ -100,7 +100,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
     private Expense AddExpenses(CashFlowDbContext dbContext, User user, long expenseId)
     {
         var expense = ExpenseBuilder.Build(user);
-        expense.Id = (int)expenseId;
+        expense.Id = expenseId;
 
         dbContext.Expenses.Add(expense);
 
