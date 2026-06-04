@@ -27,7 +27,7 @@ This API currently provides core functionalities for managing your financial out
 
 This project is actively under development, with exciting features planned for future releases:
 
-* **Database Integration:** Persistence for your expense data (e.g., SQL Server, PostgreSQL).
+* **Database Integration:** Persistence for your expense data with PostgreSQL.
 * **Dependency Injection:** Implementing a more flexible and testable architecture.
 * **Authentication & Authorization:** Secure user access and data protection.
 * **Database Migrations:** Streamlined database schema management.
@@ -38,7 +38,7 @@ This project is actively under development, with exciting features planned for f
 
 The CashFlow API is built using:
 
-* **C# and .NET (Specify Version if Known, e.g., .NET 8)**
+* **C# and .NET **
 * **Domain-Driven Design (DDD)** Principles
 * **Key NuGet Packages:**
     * **Bogus**: Used for generating realistic fake data for development and testing.
